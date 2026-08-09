@@ -13,9 +13,9 @@ resource "aws_apigatewayv2_api" "cloud_resume_challenge" {
   name          = "cloud-resume-challenge"
   protocol_type = "HTTP"
   cors_configuration {
-    allow_origins = [ "https://kanestephens.com", ]
-    allow_methods = [ "POST", ]
-    allow_headers = [ "Content-Type" ]
+    allow_origins = ["https://kanestephens.com", ]
+    allow_methods = ["POST", ]
+    allow_headers = ["Content-Type"]
   }
 }
 
