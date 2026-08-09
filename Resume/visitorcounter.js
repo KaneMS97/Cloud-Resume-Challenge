@@ -1,19 +1,11 @@
 let count = 0
-const url = "https://kanestephens.com"
-function updateCount(){
-    document.getElementById("count").innerHTML = count;
+const api = "https://gwgcmdxf1f.execute-api.eu-west-2.amazonaws.com"
+
+async function updateCounter() {
+    const response = await fetch(api);
+    const data = await response.json();
+
+    document.getElementById("visitor-count").textContent = data.count;
 }
 
-async function increaseCount(){
-    try{
-    const response = await fetch(url)
-    if(response.ok){
-    count++;
-    updateCount();
-    }
-}catch (error){
-    console.error("Network error:", error)
-}
-}
-
-increaseCount();
+updateCounter();

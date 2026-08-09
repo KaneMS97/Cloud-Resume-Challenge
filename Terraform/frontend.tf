@@ -12,8 +12,8 @@ resource "aws_s3_bucket_policy" "website_bucket_policy" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid       = "AllowCloudFrontServicePrincipal"
-        Effect    = "Allow"
+        Sid    = "AllowCloudFrontServicePrincipal"
+        Effect = "Allow"
         Principal = {
           Service = "cloudfront.amazonaws.com"
         }
@@ -38,7 +38,7 @@ resource "aws_cloudfront_origin_access_control" "default" {
 }
 
 resource "aws_cloudfront_distribution" "website_distribution" {
-  aliases = [ "kanestephens.com" ]
+  aliases = ["kanestephens.com"]
   origin {
     domain_name              = aws_s3_bucket.static-site-bucket.bucket_regional_domain_name
     origin_id                = "S3-${aws_s3_bucket.static-site-bucket.id}"
@@ -50,12 +50,12 @@ resource "aws_cloudfront_distribution" "website_distribution" {
   default_root_object = "index.html"
 
   default_cache_behavior {
-    
+
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = "S3-${aws_s3_bucket.static-site-bucket.id}"
 
-    cache_policy_id  = data.aws_cloudfront_cache_policy.caching_optimized.id
+    cache_policy_id        = data.aws_cloudfront_cache_policy.caching_optimized.id
     viewer_protocol_policy = "redirect-to-https"
   }
 
@@ -73,9 +73,9 @@ resource "aws_cloudfront_distribution" "website_distribution" {
 }
 
 resource "aws_acm_certificate" "website_cert" {
-  domain_name = var.domain_name
+  domain_name       = var.domain_name
   validation_method = "DNS"
-  provider = aws.us_east_1
+  provider          = aws.us_east_1
   lifecycle {
     create_before_destroy = true
   }
