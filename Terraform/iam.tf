@@ -44,6 +44,7 @@ resource "aws_iam_openid_connect_provider" "github" {
   client_id_list = [
     "sts.amazonaws.com",
   ]
+  thumbprint_list = [ "ab9d0263244dd0326eb67015705a667e79cfe998" ]
 }
 
 data "aws_iam_policy_document" "github_policy" {
