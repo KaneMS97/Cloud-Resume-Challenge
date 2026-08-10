@@ -1,5 +1,7 @@
 name: Terraform CI
-
+permissions:
+  id-token: write
+  contents: read
 on:
   push:
     branches:
@@ -10,6 +12,7 @@ on:
       - main
 
 jobs:
+  
   terraform:
     runs-on: ubuntu-latest
 
@@ -18,6 +21,12 @@ jobs:
         working-directory: Terraform
 
     steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: <your-role-arn>
+          aws-region: eu-west-2
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -35,3 +44,5 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan
+
+      
