@@ -47,26 +47,26 @@ resource "aws_iam_openid_connect_provider" "github" {
 }
 
 data "aws_iam_policy_document" "github_policy" {
-    statement {
-      sid = "AllowGitHubOIDC"
-      effect = "Allow"
+  statement {
+    sid    = "AllowGitHubOIDC"
+    effect = "Allow"
 
-      actions = [
-        "sts:AssumeRoleWithWebIdentity"
-      ]
+    actions = [
+      "sts:AssumeRoleWithWebIdentity"
+    ]
     principals {
-      type = "Federated"
+      type        = "Federated"
       identifiers = [aws_iam_openid_connect_provider.github.arn]
     }
     condition {
-      test = "StringEquals"
+      test     = "StringEquals"
       variable = "token.actions.githubusercontent.com:aud"
-      values = ["sts.amazonaws.com"]
+      values   = ["sts.amazonaws.com"]
     }
     condition {
-      test = "StringEquals"
+      test     = "StringEquals"
       variable = "token.actions.githubusercontent.com:sub"
-      values = [ "repo:KaneMS97/Cloud-Resume-Challenge:ref:refs/heads/main" ]
+      values   = ["repo:KaneMS97/Cloud-Resume-Challenge:ref:refs/heads/main"]
     }
-    }
+  }
 }
