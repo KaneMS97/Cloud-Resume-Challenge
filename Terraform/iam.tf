@@ -70,3 +70,8 @@ data "aws_iam_policy_document" "github_policy" {
     }
   }
 }
+
+resource "aws_iam_role" "github_actions" {
+  name               = "github-actions-role"
+  assume_role_policy = data.aws_iam_policy_document.github_policy.json
+}
