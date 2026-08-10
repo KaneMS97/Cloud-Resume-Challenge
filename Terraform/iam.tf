@@ -44,7 +44,6 @@ resource "aws_iam_openid_connect_provider" "github" {
   client_id_list = [
     "sts.amazonaws.com",
   ]
-  thumbprint_list = [  ]
 }
 
 data "aws_iam_policy_document" "github_policy" {
@@ -57,18 +56,17 @@ data "aws_iam_policy_document" "github_policy" {
       ]
     principals {
       type = "Federated"
-      identifiers = [ aws_iam_openid_connect_provider.github.arn ]
+      identifiers = [aws_iam_openid_connect_provider.github.arn]
     }
     condition {
       test = "StringEquals"
       variable = "token.actions.githubusercontent.com:aud"
-      values = [ "sts.amazonaws.com" ]
+      values = ["sts.amazonaws.com"]
     }
     condition {
       test = "StringEquals"
       variable = "token.actions.githubusercontent.com:sub"
-      values = [ "repo:KaneMS97/cloud-resume-challenge:ref:refs/heads/main" ]
+      values = [ "repo:KaneMS97/Cloud-Resume-Challenge:ref:refs/heads/main" ]
     }
     }
-  
 }
