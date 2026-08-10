@@ -15,7 +15,7 @@ def lambda_handler(event,context):
                                    },
         ReturnValues="UPDATED_NEW"
 )
-
+#m
     new_count = int(response['Attributes']['visitors'])
 
     return {
