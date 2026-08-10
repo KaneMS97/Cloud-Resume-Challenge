@@ -17,10 +17,6 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: Terraform
-
     steps:
       - name: Debug OIDC token claims
         run: |
