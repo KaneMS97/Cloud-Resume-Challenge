@@ -107,6 +107,16 @@ data "aws_iam_policy_document" "github_permissions" {
       aws_s3_bucket.static-site-bucket.arn
     ]
   }
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "cloudfront:ListCachePolicies",
+      "route53:ListHostedZones"
+    ]
+
+    resources = ["*"]
+  }
 }
 
 resource "aws_iam_role" "github_actions" {
