@@ -72,17 +72,17 @@ data "aws_iam_policy_document" "github_policy" {
 }
 
 data "aws_iam_policy_document" "github_permissions" {
-    statement {
-        effect = "Allow"
+  statement {
+    effect = "Allow"
 
-        actions = [
-            "s3:ListBucket"
-        ]
+    actions = [
+      "s3:ListBucket"
+    ]
 
-        resources = [
-        aws_s3_bucket.static-site-bucket.arn
-        ]
-    }
+    resources = [
+      aws_s3_bucket.static-site-bucket.arn
+    ]
+  }
   statement {
     effect = "Allow"
 
