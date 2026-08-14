@@ -123,3 +123,9 @@ resource "aws_iam_role" "github_actions" {
   name               = "github-actions-role"
   assume_role_policy = data.aws_iam_policy_document.github_policy.json
 }
+
+resource "aws_iam_role_policy" "github_actions_permissions" {
+  name   = "github-actions-permissions"
+  role   = aws_iam_role.github_actions.id
+  policy = data.aws_iam_policy_document.github_permissions.json
+}
