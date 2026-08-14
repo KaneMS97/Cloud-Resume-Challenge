@@ -76,17 +76,6 @@ data "aws_iam_policy_document" "github_permissions" {
     effect = "Allow"
 
     actions = [
-      "s3:ListBucket"
-    ]
-
-    resources = [
-      aws_s3_bucket.static-site-bucket.arn
-    ]
-  }
-  statement {
-    effect = "Allow"
-
-    actions = [
       "s3:PutObject",
       "s3:DeleteObject"
     ]
