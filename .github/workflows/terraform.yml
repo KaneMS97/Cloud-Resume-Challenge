@@ -46,5 +46,10 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan
+      
+      - name: Deploy website to S3
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        working-directory: .
+        run: aws s3 sync Resume/ s3://kanems97-website-bucket --delete
 
       
