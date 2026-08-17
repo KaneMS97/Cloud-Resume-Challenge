@@ -103,7 +103,8 @@ data "aws_iam_policy_document" "github_permissions" {
       "cloudfront:ListCachePolicies",
       "route53:ListHostedZones",
       "cloudfront:GetCachePolicy",
-      "route53:GetHostedZone"
+      "route53:GetHostedZone",
+      "route53:ListTagsForResource"
     ]
 
     resources = ["*"]
